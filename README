@@ -1,0 +1,62 @@
+get hacking!
+
+ubuntu 8.04 ; rubygems 1.3 ; rails 2.2.2 ~~> 
+
+First things first, you first need to upgrade the gems to 1.3 to install rails 2.2.2
+
+sudo gem --version sudo gem update --system
+
+1) When you see the error code: /usr/bin/gem:23: uninitialized constant Gem::GemRunner (NameError)
+
+So the solution is to add require ‘rubygems/gem_runner’ line to /usr/bin/gem . If you don’t know how to do this or if you are a newbie, don’t worry, I am explaining it below .
+
+Step 1 : Go to the terminal and type the following
+
+$ cd /usr/bin/
+
+This will move you to the folder /usr/bin/
+
+Step 2 : Type the following command to open up file in text editor
+
+$ sudo pico gem and enter your password
+
+Step 3 : Add the line ‘rubygems/gem_runner’ to the gem file that opens up after Step 2 ,
+
+Add the line before require ‘rubygems’ Step 4 : Press Ctrl+X to save the file and exit.
+
+=====================================
+
+
+
+If you are getting errors:
+
+/usr/bin/gem:10:Warning: Gem::manage_gems is deprecated and will be removed on or after March 2009. /usr/bin/gem:23: uninitialized constant Gem::GemRunner (NameError)
+
+Here's the hack:
+
+sudo pico /usr/bin/gem
+
+Change the top of the file to look like this:
+
+require 'rubygems' require 'rubygems/gem_runner'
+Gem.manage_gems
+
+Then you could proceed to installing RAILS:
+
+gem install rails
+
+or
+
+sudo gem install rails
+
+=======================================
+
+now we are ready to get ready.
+
+1)download tarball
+2)rake hackerfly:go
+3)insert password for sudo if requested...
+4)rake db:migrate
+5)./script/server
+
+FIN
