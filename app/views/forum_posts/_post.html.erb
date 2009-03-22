@@ -1,0 +1,23 @@
+<a name="<%= post.dom_id%>" href=""></a>
+<div class="post" id="<%= post.dom_id%>">
+  
+  <div class="info">
+  <%= icon post.owner %><br/>
+  Posted by <%=link_to h(post.owner.f), profile_path(post.owner) %><br/>
+  Posted <%= time_ago_in_words post.created_at %> ago<br/>
+  <%- if_admin do %>
+     <%= inline_tb_link('Edit', "#{post.dom_id}_edit", {:title => "Editing post in #{post.topic.title}",
+                                                           :id => "#{post.dom_id}_edit_link"}, {:height => 290}) %> : 
+    <%= link_to_remote 'Destroy', {:url => forum_topic_post_path(@forum, @topic, post), :confirm => 'Are you sure?', :method => :delete}, {:class=> "destroy", :id => "#{post.dom_id}_destroy_link"} %>
+  <%- end %>
+  </div>
+  
+  <div class="body">
+    <%= sanitize textilize(post.body)%>
+  </div>
+  
+  <div id="<%= post.dom_id%>_edit" class="hidden">
+    <%= render :partial => 'forum_posts/form', :locals => {:post => post}%>
+  </div>
+  
+</div>

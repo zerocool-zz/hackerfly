@@ -1,0 +1,55 @@
+
+<div class="forum">
+  
+  <%= link_to 'Forums', forums_path %> > <%=h @forum.name %>
+  <h1 class="forum_name"><%=h @forum.name %></h1>
+  <div id="forum_details">
+    <%= forum_details(@forum)%>
+  </div>
+   
+   <div id="sub_nav">
+     <%- if @u %>
+       <%= inline_tb_link('Start a new topic', "new_forum_topic", {:title => "Starting a new topic in #{@forum.name}",
+                                                                   :id => "new_topic_link"},
+                                                                  {:height => 130, :width => 300}) %>
+       
+     <%- end %>
+
+     <%= link_to "&larr; Back to Forums", forums_path %>
+   </div>
+   
+   <div id="new_forum_topic" class="hidden">
+     <%= render :partial => 'forum_topics/form' %>
+   </div>
+   
+   <p class="forum_description">
+     <%=h @forum.description %>
+   </p>
+
+   <%= will_paginate @topics %>
+   <table class="forum_topics">
+
+     <tr class="labels" id="topic_labels_row">
+       <td class="">Topic</td>
+
+       <td class="posts">Posts</td>
+
+       <td class="last_post">Last Post</td>
+
+       <%- if_admin do %>
+       <td class="controls"></td>
+       <% end %>
+     </tr>
+
+     <%= render :partial => 'forum_topics/topic', :collection => @topics%>
+
+   </table>
+   <div id="no_topics_message" style="display: <%= @topics.empty? ? 'block' : 'none' %>">
+      There are no topics in this forum yet.
+   </div>
+
+   <%= will_paginate @topics %>
+  
+
+</div>
+

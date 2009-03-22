@@ -1,0 +1,5 @@
+A new post was added to the <%= h @post.topic.title %> topic on the <%= h @post.topic.forum.name %> form at <%= link_to SITE_NAME, "http://#{SITE}" %>
+
+<%= sanitize textilize(@post.body) %>
+ 
+Posted by <%=@post.owner.f %> on <%= link_to h(@post.topic.title), forum_topic_url(@post.topic.forum, @post.topic, :host=>SITE) %>

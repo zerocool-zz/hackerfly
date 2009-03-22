@@ -1,0 +1,16 @@
+<%
+#locals
+topic ||= @topic || @forum.topic.build
+
+url = topic.new_record? ? forum_topics_path(@forum) : forum_topic_path(topic.forum, topic)  
+%>
+
+
+<% less_remote_form_for topic, :url=>url do |f| %>
+  <%= f.text_field :title %>
+
+  <div class="row button">
+    <%= f.submit "Save", :class => 'button' %>
+  </div>
+
+<% end %>
