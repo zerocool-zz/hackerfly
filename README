@@ -1,6 +1,7 @@
 get hacking!
 
-ubuntu 8.04 ; rubygems 1.3 ; rails 2.2.2 ~~> 
+ubuntu 8.04.0+ ; rubygems 1.3 ; rails 2.2.2 ~~>
+ 
 
 First things first, you first need to upgrade the gems to 1.3 to install rails 2.2.2
 
