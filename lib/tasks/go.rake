@@ -1,0 +1,35 @@
+namespace :gems do
+  namespace :dependent do
+    desc "Install gems required for hackerfly"
+    task :install do
+      windoz = /win32/ =~ RUBY_PLATFORM
+      gems = %w[
+          rflickr
+          rmagick
+          RedCloth
+        ]
+      gems << 'win32console' if windoz
+      sudo = windoz ? '' : 'sudo '
+      gems.each do |gem|
+        `#{sudo}gem install #{gem}`
+      end
+      `rake gems:build`
+    end
+  end
+end
+
+namespace :hackerfly do
+  task :check do
+    puts "TODO - check that all config ready"
+  end
+  
+  desc "Booting up for hackerfly"
+  task :go => [
+    "environment", 
+    "hackerfly:check",
+    "gems:dependent:install", 
+    "db:create:all", "mig"
+    ] do
+    puts "And now we are done!"
+  end
+end
