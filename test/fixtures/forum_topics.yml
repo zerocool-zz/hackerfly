@@ -1,0 +1,34 @@
+# == Schema Information
+# Schema version: 2008100601002
+#
+# Table name: forum_topics
+#
+#  id         :integer       not null, primary key
+#  title      :string(255)   
+#  forum_id   :integer       
+#  owner_id   :integer       
+#  created_at :datetime      
+#  updated_at :datetime      
+#
+
+##
+# ForumTopics Fixtures
+# Author: Les Freeman (lesliefreeman3@gmail.com)
+# Created on: 5/16/08
+# Updated on: 5/16/08
+# Provides useful methods for testing the models and controllers associented with forums.
+#
+one:
+  title: Topic One
+  forum: one
+  owner: user
+
+two:
+  title: Topic Two
+  forum: one
+  owner: user
+
+three:
+  title: Topic Three
+  forum: two
+  owner: user
